@@ -1,0 +1,53 @@
+﻿<Window x:Class="ControlFolderMVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodels="clr-namespace:ControlFolderMVVM.ViewModels"
+        mc:Ignorable="d"
+        Title="Інтерактивний контроль стану директорії" MinHeight="170" Closed="Window_Closed" Icon="..\Resources/uac_icon2-200x200.png" StateChanged="Window_StateChanged" MinWidth="440" Height="350" Width="525">
+    <Window.DataContext>
+        <viewmodels:MainViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="ListView">
+            <Setter Property="Background" Value="Black"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Background="{Binding Brush}">
+            <GroupBox Margin="5" Header="Керування">
+                <StackPanel>
+                    <StackPanel  Orientation="Horizontal">
+                        <Button x:Name="Button" Command="{Binding StartControlCommand}" Margin="5" VerticalAlignment="Top" Width="210">Вибрати папку для контролю</Button>
+                        <TextBlock TextAlignment="Center" Margin="5" Width="55">Стан:</TextBlock>
+                        <TextBlock x:Name="Status" Margin="5" Text="{Binding Status}" Width="auto"/>
+                    </StackPanel>
+                    <CheckBox IsChecked="{Binding IsDisableFolderChange}" Margin="5">Заборонити зміну папки</CheckBox>
+                </StackPanel>
+            </GroupBox>
+
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock HorizontalAlignment="Center">Лог</TextBlock>
+            <ListView SelectedIndex="{Binding SelectedIndex}" ItemsSource="{Binding LogList}" Grid.Row="1" Background="#FFACA7A7" >
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Command="{Binding OpenFileCommand}" Header="Переглянути файл"></MenuItem>
+                        <MenuItem Command="{Binding RemoveFileCommand}" Header="Видалити файл"></MenuItem>
+                        <MenuItem Command="{Binding OpenInFileExplorerCommand}" Header="Відкрити в провіднику"></MenuItem>
+                    </ContextMenu>
+                </ListView.ContextMenu>
+            </ListView>
+        </Grid>
+    </Grid>
+</Window>
