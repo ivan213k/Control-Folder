@@ -73,6 +73,7 @@
     <Compile Include="Models\Directory.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\IControlFolder.cs" />
+    <Compile Include="Models\IFileSystemElement.cs" />
     <Compile Include="Resources\Synchronaizer.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\Command.cs" />

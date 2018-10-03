@@ -16,7 +16,7 @@ namespace ControlFolderMVVM.ViewModels
         Thread thread;
         ParameterizedThreadStart parameterizedThreadStart;
 
-        public List<File> FileList { get; set; }
+        public List<IFileSystemElement> FileList { get; set; }
         public ObservableCollection<string> LogList { get; set; }
 
         #region Ui Property
@@ -113,7 +113,7 @@ namespace ControlFolderMVVM.ViewModels
 
         public MainViewModel()
         {
-            FileList = new List<File>();
+            FileList = new List<IFileSystemElement>();
             LogList = new ObservableCollection<string>();
             controlFolder = new ControlFolderLogic();
             StartControlCommand = new Command(StartControl);
@@ -209,7 +209,7 @@ namespace ControlFolderMVVM.ViewModels
         /// обработчик события удаления директории
         /// </summary>
         /// <param name="file"></param>
-        private void ControlFolder_FolderRemoved(File file) 
+        private void ControlFolder_FolderRemoved(IFileSystemElement file) 
         {
             FileList.Add(file);
             LogList.Add(string.Format("[{0}:{1}:{2} ] папку {3} було видалено, шлях \"{4}\"", DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, file.Name, file.Path));
@@ -220,7 +220,7 @@ namespace ControlFolderMVVM.ViewModels
         /// обработчик события добавления директории
         /// </summary>
         /// <param name="file"></param>
-        private void ControlFolder_FolderAdded(File file) 
+        private void ControlFolder_FolderAdded(IFileSystemElement file) 
         {
             FileList.Add(file);
             LogList.Add(string.Format("[{0}:{1}:{2} ] папку {3} було додано, шлях \"{4}\"", DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, file.Name, file.Path));
@@ -231,7 +231,7 @@ namespace ControlFolderMVVM.ViewModels
         /// обработчик события изменения файла
         /// </summary>
         /// <param name="file">файл который был изменен</param>
-        private void ControlFolder_FileChanged(File file) // обробник події зміни файлу
+        private void ControlFolder_FileChanged(IFileSystemElement file) // обробник події зміни файлу
         {
             FileList.Add(file);
             LogList.Add(string.Format("[{0}:{1}:{2} ] файл {3} було змінено, шлях \"{4}\"", DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, file.Name, file.Path));
@@ -242,7 +242,7 @@ namespace ControlFolderMVVM.ViewModels
         /// обработчик события удаления файла
         /// </summary>
         /// <param name="file">файл который был удален</param>
-        private void ControlFolder_FileRemoved(File file)
+        private void ControlFolder_FileRemoved(IFileSystemElement file)
         {
             FileList.Add(file);
             LogList.Add(string.Format("[{0}:{1}:{2} ] файл {3} було видалено, шлях \"{4}\"", DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, file.Name, file.Path));
@@ -253,7 +253,7 @@ namespace ControlFolderMVVM.ViewModels
         /// обработчик события добавления файла
         /// </summary>
         /// <param name="file">файл который был добавлен</param>
-        private void ControlFolder_FileAdded(File file)
+        private void ControlFolder_FileAdded(IFileSystemElement file)
         {
             FileList.Add(file);
             LogList.Add(string.Format("[{0}:{1}:{2} ] файл {3} було додано, шлях \"{4}\"", DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, file.Name, file.Path));

@@ -1,8 +1,7 @@
 ﻿namespace ControlFolderMVVM.Models
 {
     
-    public delegate void ChangeFolder(File file);
-    public delegate void ChangeFolderOnDirectory(Directory file);
+    public delegate void ChangeFolder(IFileSystemElement file);
     /// <summary>
     /// События и методы для контроля за директорией
     /// </summary>

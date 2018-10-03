@@ -3,7 +3,7 @@
     /// <summary>
     /// Описывает директорию с необходимыми атрибутами
     /// </summary>
-    public class Directory
+    public class Directory : IFileSystemElement
     {
         /// <summary>
         /// имя директории

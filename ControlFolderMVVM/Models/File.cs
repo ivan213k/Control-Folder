@@ -3,7 +3,7 @@
     /// <summary>
     /// Описывает файл с необходимыми атрибутами
     /// </summary>
-    public class File
+    public class File : IFileSystemElement
     {
         /// <summary>
         /// имя файла
